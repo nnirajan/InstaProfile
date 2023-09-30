@@ -11,7 +11,7 @@ import SwiftUI
 struct InstaProfileSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            InstaProfileScreen()
         }
     }
 }
