@@ -43,7 +43,7 @@ struct InstaHeaderView: View {
                 Text("Nirajan Shrestha")
             }
         }
-        .padding()
+        .padding(.horizontal)
     }
 }
 

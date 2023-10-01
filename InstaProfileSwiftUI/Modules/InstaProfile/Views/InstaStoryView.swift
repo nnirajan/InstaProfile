@@ -20,7 +20,7 @@ struct InstaStoryView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
     }
 }
