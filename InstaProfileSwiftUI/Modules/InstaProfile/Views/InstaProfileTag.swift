@@ -22,7 +22,7 @@ struct InstaProfileTag: View {
     }
     
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 0) {
             Button(action: {
                 withAnimation(.easeInOut) {
                     selectedTab = tab
@@ -36,11 +36,13 @@ struct InstaProfileTag: View {
                 .frame(width: 28, height: 28)
                 .foregroundColor(tab == selectedTab ? .primary : .gray)
             })
+            .padding()
             
             Rectangle()
                 .frame(height: 1)
                 .foregroundColor(tab == selectedTab ? .primary : .clear)
         }
+        .background(.white)
     }
 }
 

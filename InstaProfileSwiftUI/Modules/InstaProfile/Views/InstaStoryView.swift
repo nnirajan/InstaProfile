@@ -10,11 +10,11 @@ import SwiftUI
 struct InstaStoryView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
+            LazyHStack {
                 ForEach(0...10, id: \.self) { index in
                     VStack {
                         Circle()
-                            .frame(width: 70)
+                            .frame(width: 70, height: 70)
                         
                         Text("Pokhara")
                     }

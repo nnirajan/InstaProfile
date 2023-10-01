@@ -12,7 +12,7 @@ struct InstaHeaderView: View {
         VStack(alignment: .leading) {
             HStack {
                 Circle()
-                    .frame(width: 80)
+                    .frame(width: 80, height: 80)
                 
                 VStack {
                     Text("40")
@@ -38,13 +38,12 @@ struct InstaHeaderView: View {
                 }
                 .frame(maxWidth: .infinity)
             }
-            .padding(.horizontal)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text("Nirajan Shrestha")
             }
-            .padding(.horizontal)
         }
+        .padding()
     }
 }
 

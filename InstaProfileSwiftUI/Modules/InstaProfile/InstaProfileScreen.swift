@@ -29,6 +29,7 @@ struct InstaProfileScreen: View {
     @State private var selectedTab: InstaProfileTab = .posted
     
     @State private var headerViewSize: CGSize = .zero
+    @State private var sectionHeaderViewSize: CGSize = .zero
     
     @State private var parentViewPosition: CGPoint = .zero
     
@@ -36,16 +37,15 @@ struct InstaProfileScreen: View {
     
     @State private var diff: CGFloat = 0
     
-//    init() {
-//        UITableView.appearance().showsVerticalScrollIndicator = false
-//    }
+    @State private var makeOffset: CGFloat = 0
     
     var body: some View {
         GeometryReader { parentProxy in
-            ScrollView(showsIndicators: false) {
+            ScrollView(.vertical, showsIndicators: false) {
+                /// headerViews
                 Group {
                     InstaHeaderView()
-                    
+
                     InstaStoryView()
                 }
                 .readSize { size in
@@ -53,105 +53,73 @@ struct InstaProfileScreen: View {
                 }
                 
                 Text("parent: \(parentViewPosition.y)")
-                
                 Text("child: \(childViewPosition.y)")
-                
                 Text("diff: \(diff)")
                 
-                // MARK: - 1
+                /// tabViews
+                Section(content: {
+                    TabView(selection: $selectedTab, content: {
+                        PostedScreen()
+                            .background(.yellow)
+                            .tag(InstaProfileTab.posted)
+
+                        TaggedScreen()
+                            .background(.yellow)
+                            .tag(InstaProfileTab.tagged)
+                    })
+                    .frame(width: parentProxy.size.width,
+                           height: parentProxy.size.height - sectionHeaderViewSize.height)
+                    .background(.yellow)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                }, header: {
+                    /// sectionHeader
+                    HStack(spacing: 0) {
+                        InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
+
+                        InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
+                    }
+                    .readSize { size in
+                        sectionHeaderViewSize = size
+                    }
+                })
+
+
+                
 //                Section(content: {
-//                    GeometryReader { innerProxy in
-//                        List {
+//                    ScrollView(.vertical, showsIndicators: false) {
+//                        LazyVStack(alignment: .leading, spacing: 16, pinnedViews: [.sectionHeaders]) {
 //                            ForEach(0...100, id: \.self) { index in
 //                                Text("ram \(index)")
-//                                    .listRowSeparator(.hidden)
-//                                    .listRowInsets(EdgeInsets())
-//                                    .readScrollPosition { point in
-//                                        if index == 0 {
-//                                            childViewPosition = point
-//                                        }
-//                                    }
+//                                    .frame(height: 50)
+//                                    .frame(maxWidth: .infinity)
 //                            }
 //                        }
-//                        .listStyle(.plain)
-//                        .onAppear {
-//                            UITableView.appearance().showsVerticalScrollIndicator = false
-//                        }
+//                        .readScrollPosition { point in
+//                            childViewPosition = point
 //
-////                        .readScrollPosition { point in
-////                            childViewPosition = point
-////                        }
+////                            diff = childViewPosition.y - parentViewPosition.y
+//                        }
 //                    }
-//                    .frame(width: parentProxy.size.width, height: parentProxy.size.height - 40)
-////                    .offset(y:  )
+////                    .frame(width: parentProxy.size.width, height: parentProxy.size.height - 45)
+////                    .background(.red)
+//
 //                }, header: {
 //                    HStack(spacing: 0) {
 //                        InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
 //
 //                        InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
 //                    }
+//                    .frame(height: 100)
 //                })
 //                .readScrollPosition { point in
 //                    self.parentViewPosition = point
 //                }
-                
-                
-                
-                // MARK: - 2
-//                HStack(spacing: 0) {
-//                    InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
-//
-//                    InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
-//                }
-//
-//                ZStack {
-//                    List {
-//                        ForEach(0...100, id: \.self) { index in
-//                            Text("ram \(index)")
-//                                .listRowSeparator(.hidden)
-//                                .listRowInsets(EdgeInsets())
-//                        }
-//                    }
-//                    .listStyle(.plain)
-//                    .frame(width: parentProxy.size.width, height: parentProxy.size.height)
-//                }
-                
-                
-                // MARK: - 3
-                Section(content: {
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            ForEach(0...100, id: \.self) { index in
-                                Text("ram \(index)")
-                                    .frame(height: 50)
-                                    .frame(maxWidth: .infinity)
-                                    
-//                                    .readScrollPosition { point in
-//                                        if index == 0 {
-//                                            childViewPosition = point
-//                                        }
-//                                    }
-                            }
-                        }
-                        .readScrollPosition { point in
-                            childViewPosition = point
-                            
-                            diff = childViewPosition.y - parentViewPosition.y
-                        }
-                    }
-                    .frame(width: parentProxy.size.width, height: parentProxy.size.height - 45)
-                }, header: {
-                    HStack(spacing: 0) {
-                        InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
-
-                        InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
-                    }
-                })
-                .readScrollPosition { point in
-                    self.parentViewPosition = point
-                }
             }
-//            .offset(y: childViewPosition.y - parentViewPosition.y)
+            .overlay(alignment: .top) {
+                Color.white
+                    .frame(height: parentProxy.safeAreaInsets.top)
+                    .ignoresSafeArea(edges: .top)
+            }
         }
     }
 }

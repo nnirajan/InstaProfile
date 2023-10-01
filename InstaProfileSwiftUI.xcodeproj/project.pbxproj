@@ -15,6 +15,11 @@
 		0860C3A62AC8499E005543FA /* InstaStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3A22AC8499E005543FA /* InstaStoryView.swift */; };
 		0860C3A72AC8499E005543FA /* InstaProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3A32AC8499E005543FA /* InstaProfileScreen.swift */; };
 		0860C3AA2AC849DE005543FA /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3A92AC849DE005543FA /* View+Extensions.swift */; };
+		0860C3AC2AC878A4005543FA /* TrackableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3AB2AC878A4005543FA /* TrackableList.swift */; };
+		0860C3AE2AC87942005543FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3AD2AC87942005543FA /* ContentView.swift */; };
+		0860C3B02AC8889D005543FA /* PostedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3AF2AC8889D005543FA /* PostedScreen.swift */; };
+		0860C3B22AC888B4005543FA /* TaggedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3B12AC888B4005543FA /* TaggedScreen.swift */; };
+		0860C3B42AC9ACDF005543FA /* PinHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0860C3B32AC9ACDF005543FA /* PinHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,11 @@
 		0860C3A22AC8499E005543FA /* InstaStoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaStoryView.swift; sourceTree = "<group>"; };
 		0860C3A32AC8499E005543FA /* InstaProfileScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaProfileScreen.swift; sourceTree = "<group>"; };
 		0860C3A92AC849DE005543FA /* View+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		0860C3AB2AC878A4005543FA /* TrackableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableList.swift; sourceTree = "<group>"; };
+		0860C3AD2AC87942005543FA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0860C3AF2AC8889D005543FA /* PostedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedScreen.swift; sourceTree = "<group>"; };
+		0860C3B12AC888B4005543FA /* TaggedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggedScreen.swift; sourceTree = "<group>"; };
+		0860C3B32AC9ACDF005543FA /* PinHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +89,9 @@
 			isa = PBXGroup;
 			children = (
 				0860C39E2AC8499E005543FA /* InstaProfile */,
+				0860C3AB2AC878A4005543FA /* TrackableList.swift */,
+				0860C3AD2AC87942005543FA /* ContentView.swift */,
+				0860C3B32AC9ACDF005543FA /* PinHeader.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -97,6 +110,8 @@
 			children = (
 				0860C39F2AC8499E005543FA /* Views */,
 				0860C3A32AC8499E005543FA /* InstaProfileScreen.swift */,
+				0860C3B12AC888B4005543FA /* TaggedScreen.swift */,
+				0860C3AF2AC8889D005543FA /* PostedScreen.swift */,
 			);
 			path = InstaProfile;
 			sourceTree = "<group>";
@@ -189,10 +204,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0860C3B02AC8889D005543FA /* PostedScreen.swift in Sources */,
+				0860C3AC2AC878A4005543FA /* TrackableList.swift in Sources */,
 				0860C3A52AC8499E005543FA /* InstaProfileTag.swift in Sources */,
+				0860C3AE2AC87942005543FA /* ContentView.swift in Sources */,
 				0860C3AA2AC849DE005543FA /* View+Extensions.swift in Sources */,
+				0860C3B42AC9ACDF005543FA /* PinHeader.swift in Sources */,
 				0860C3A72AC8499E005543FA /* InstaProfileScreen.swift in Sources */,
 				0860C3A42AC8499E005543FA /* InstaHeaderView.swift in Sources */,
+				0860C3B22AC888B4005543FA /* TaggedScreen.swift in Sources */,
 				0860C3A62AC8499E005543FA /* InstaStoryView.swift in Sources */,
 				0860C38F2AC8488E005543FA /* InstaProfileSwiftUIApp.swift in Sources */,
 			);
