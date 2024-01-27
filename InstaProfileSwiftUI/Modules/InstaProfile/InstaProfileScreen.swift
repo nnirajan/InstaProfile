@@ -41,81 +41,63 @@ struct InstaProfileScreen: View {
     @State private var diff: CGFloat = 0
     @State private var makeOffset: CGFloat = 0
     
+    var columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10),
+    ]
+    
     var body: some View {
-        // MARK: - 1st try
         /// parentView
         ScrollView(.vertical, showsIndicators: false) {
-            /// headerViews
-            VStack {
-                InstaHeaderView()
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders], content: {
+                /// headerViews
+                VStack {
+                    InstaHeaderView()
+                    
+                    InstaStoryView()
+                }
+                .padding(.vertical)
+                
+//                Text("parentsize: \(parentSize.height)")
+//                Text("parentViewPosition: \(parentViewPosition.y)")
+//                Text("child: \(childViewPosition.y)")
+//                Text("diff: \(diff)")
 
-                InstaStoryView()
-            }
-            .padding(.vertical)
-
-            Text("parent: \(parentViewPosition.y)")
-            Text("child: \(childViewPosition.y)")
-            Text("diff: \(diff)")
-
-            
-            // MARK: - 1
-            /// childView
-//                /// tabViews
-//                Section(content: {
-//                    TabView(selection: $selectedTab, content: {
+                /// tabview
+                Section(content: {
+//                    LazyVGrid(columns: columns, spacing: 10) {
+//                        ForEach(0...30, id: \.self) { index in
+//                            Text("ram \(index)")
+//                                .frame(height: 100)
+//                                .frame(maxWidth: .infinity)
+//                                .background(.red)
+//                        }
+//                    }
+                    
+//                    TabView(selection: $selectedTab) {
 //                        PostedScreen()
 //                            .background(.yellow)
 //                            .tag(InstaProfileTab.posted)
-//
+//                            .frame(height: 100)
+//    
 //                        TaggedScreen()
-//                            .background(.yellow)
+//                            .background(.red)
 //                            .tag(InstaProfileTab.tagged)
-//                    })
-//                    .frame(width: parentProxy.size.width,
-//                           height: parentProxy.size.height - sectionHeaderViewSize.height)
-//                    .background(.yellow)
+//                    }
 //                    .tabViewStyle(.page(indexDisplayMode: .never))
-//                }, header: {
-//                    /// sectionHeader
-//                    HStack(spacing: 0) {
-//                        InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
-//
-//                        InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
-//                    }
-//                    .readSize { size in
-//                        sectionHeaderViewSize = size
-//                    }
-//                })
-
-            // MARK: - 2
-            Section(content: {
-                ScrollView(showsIndicators: false) {
-                    LazyVStack(alignment: .leading, spacing: 16) {
-                        ForEach(0...100, id: \.self) { index in
-                            Text("ram \(index)")
-                                .frame(height: 50)
-                                .frame(maxWidth: .infinity)
-                        }
+//                    .frame(height: 500)
+                }, header: {
+                    /// sectionHeader
+                    HStack(spacing: 0) {
+                        InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
+                        
+                        InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
                     }
-                    .readScrollPosition { point in
-                        childViewPosition = point
-
-                        //                            diff = childViewPosition.y - parentViewPosition.y
+                    .readSize { size in
+                        sectionHeaderViewSize = size
                     }
-                }
-                .frame(width: parentSize.width,
-                       height: parentSize.height - sectionHeaderViewSize.height)
-                .background(.yellow)
-            }, header: {
-                /// sectionHeader
-                HStack(spacing: 0) {
-                    InstaProfileTag(selectedTab: $selectedTab, tab: .posted)
-
-                    InstaProfileTag(selectedTab: $selectedTab, tab: .tagged)
-                }
-                .readSize { size in
-                    sectionHeaderViewSize = size
-                }
+                })
+                
             })
         }
         .readSize { size in

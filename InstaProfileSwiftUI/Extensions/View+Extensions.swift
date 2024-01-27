@@ -34,6 +34,7 @@ struct ScrollOffsetPreferenceKey: PreferenceKey {
 }
 
 extension View {
+    // MARK: - readWidth
     func readWidth(perform action: @escaping (CGFloat) -> Void) -> some View {
         background(GeometryReader {
             Color.clear.preference(key: WidthPreferenceKey.self, value: $0.size.width)
@@ -41,6 +42,7 @@ extension View {
         .onPreferenceChange(WidthPreferenceKey.self, perform: action)
     }
     
+    // MARK: - readHeight
     func readHeight(perform action: @escaping (CGFloat) -> Void) -> some View {
         background(GeometryReader {
             Color.clear.preference(key: HeightPreferenceKey.self, value: $0.size.height)
@@ -48,6 +50,7 @@ extension View {
         .onPreferenceChange(HeightPreferenceKey.self, perform: action)
     }
     
+    // MARK: - readSize
     func readSize(perform action: @escaping (CGSize) -> Void) -> some View {
         background(
             GeometryReader {
@@ -58,6 +61,7 @@ extension View {
         .onPreferenceChange(SizePreferenceKey.self, perform: action)
     }
     
+    // MARK: - getSafeAreaInsets
     func getSafeAreaInsets(perform action: @escaping (EdgeInsets) -> Void) -> some View {
         background(
             GeometryReader {
@@ -68,6 +72,7 @@ extension View {
         .onPreferenceChange(SafeAreaInsetsKey.self, perform: action)
     }
     
+    // MARK: - readScrollPosition
     func readScrollPosition(perform action: @escaping (CGPoint) -> Void) -> some View {
         background(
             GeometryReader {
@@ -77,9 +82,18 @@ extension View {
         )
         .onPreferenceChange(ScrollOffsetPreferenceKey.self, perform: action)
     }
+    
+    // MARK: - readScrollPosition
+    func readLocalScrollPosition(perform action: @escaping (CGPoint) -> Void) -> some View {
+        background(
+            GeometryReader {
+                Color.clear
+                    .preference(key: ScrollOffsetPreferenceKey.self, value: $0.frame(in: .local).origin)
+            }
+        )
+        .onPreferenceChange(ScrollOffsetPreferenceKey.self, perform: action)
+    }
 }
-
-
 
 extension UIApplication {
     var keyWindow: UIWindow? {

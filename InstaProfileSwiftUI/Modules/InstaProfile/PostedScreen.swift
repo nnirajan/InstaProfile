@@ -11,28 +11,15 @@ struct PostedScreen: View {
     var columns: [GridItem] = [
         GridItem(.flexible(), spacing: 10),
         GridItem(.flexible(), spacing: 10),
-//        GridItem(.flexible(), spacing: 10),
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 10) {
-                ForEach(0...10, id: \.self) { _ in
-                    Text("ram")
-                        .frame(height: 100)
-                        .frame(maxWidth: .infinity)
-                        .background(.red)
-                }
-                
-                
-                
-//                Text("ram")
-//                    .frame(maxWidth: .infinity)
-//                    .background(.red)
-//
-//                Text("ram")
-//                    .frame(maxWidth: .infinity)
-//                    .background(.red)
+        LazyVGrid(columns: columns, spacing: 10) {
+            ForEach(0...10, id: \.self) { index in
+                Text("ram \(index)")
+                    .frame(height: 100)
+                    .frame(maxWidth: .infinity)
+                    .background(.red)
             }
         }
     }
@@ -40,6 +27,8 @@ struct PostedScreen: View {
 
 struct PostedScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PostedScreen()
+        ScrollView {
+            PostedScreen()
+        }
     }
 }
